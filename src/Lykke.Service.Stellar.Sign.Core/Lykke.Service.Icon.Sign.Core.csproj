@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <AssemblyName>Lykke.Service.Icon.Sign.Core</AssemblyName>
     <RootNamespace>Lykke.Service.Icon.Sign.Core</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
