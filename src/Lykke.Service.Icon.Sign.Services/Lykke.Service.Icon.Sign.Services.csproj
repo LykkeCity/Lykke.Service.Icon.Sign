@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Lykke.Service.Stellar.Sign.Core\Lykke.Service.Icon.Sign.Core.csproj" />
+    <ProjectReference Include="..\Lykke.Service.Icon.Sign.Core\Lykke.Service.Icon.Sign.Core.csproj" />
   </ItemGroup>
 
 </Project>

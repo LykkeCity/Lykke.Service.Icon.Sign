@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Lykke.Service.Stellar.Sign.Core\Lykke.Service.Icon.Sign.Core.csproj" />
-    <ProjectReference Include="..\..\src\Lykke.Service.Stellar.Sign.Services\Lykke.Service.Icon.Sign.Services.csproj" />
+    <ProjectReference Include="..\..\src\Lykke.Service.Icon.Sign.Core\Lykke.Service.Icon.Sign.Core.csproj" />
+    <ProjectReference Include="..\..\src\Lykke.Service.Icon.Sign.Services\Lykke.Service.Icon.Sign.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
