@@ -8,6 +8,10 @@
     <RootNamespace>Lykk.Service.Icon.KeyGenerator</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>E:\LykkeCity\Lykke.Service.Icon.Sign\src\Lykk.Service.KeyGenerator\Lykk.Service.Icon.KeyGenerator.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Lykke.Icon.Sdk" Version="0.2.0" />
   </ItemGroup>
