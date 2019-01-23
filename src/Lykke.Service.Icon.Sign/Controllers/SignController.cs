@@ -40,9 +40,9 @@ namespace Lykke.Service.Icon.Sign.Controllers
                     SignedTransaction = xdrSigned
                 });
             }
-            catch (ArgumentException ex) when ("xdrBase64".Equals(ex.ParamName, StringComparison.Ordinal))
+            catch (ArgumentException ex)
             {
-                return BadRequest(ErrorResponse.Create("Invalid parameter").AddModelError("request.transactionContext", "Must be valid stellar transaction"));
+                return BadRequest(ErrorResponse.Create("Invalid parameter").AddModelError("request.transactionContext", "Must be valid icon transaction"));
             }
         }
     }

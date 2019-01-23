@@ -45,7 +45,7 @@ namespace Lykke.Service.Icon.Sign
 
             services.AddSwaggerGen(options =>
             {
-                options.DefaultLykkeConfiguration("v1", "StellarSign API");
+                options.DefaultLykkeConfiguration("v1", "IconSign API");
             });
 
             services.AddEmptyLykkeLogging();
