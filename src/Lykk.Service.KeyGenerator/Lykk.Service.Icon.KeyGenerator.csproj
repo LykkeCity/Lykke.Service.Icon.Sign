@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Version>1.0.1</Version>
+    <AssemblyName>Lykk.Service.Icon.KeyGenerator</AssemblyName>
+    <RootNamespace>Lykk.Service.Icon.KeyGenerator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lykke.Icon.Sdk" Version="0.2.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lykke.Service.Icon.Sign.Core\Lykke.Service.Icon.Sign.Core.csproj" />
+    <ProjectReference Include="..\Lykke.Service.Icon.Sign.Services\Lykke.Service.Icon.Sign.Services.csproj" />
+  </ItemGroup>
+
+</Project>

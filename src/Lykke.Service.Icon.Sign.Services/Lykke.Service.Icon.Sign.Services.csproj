@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Lykke.Service.Icon.Sign.Services</AssemblyName>
+    <RootNamespace>Lykke.Service.Icon.Sign.Services</RootNamespace>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lykke.Common" Version="7.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lykke.Service.Icon.Sign.Core\Lykke.Service.Icon.Sign.Core.csproj" />
+  </ItemGroup>
+
+</Project>
