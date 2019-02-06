@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,12 +8,8 @@
     <RootNamespace>Lykk.Service.Icon.KeyGenerator</RootNamespace>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>E:\LykkeCity\Lykke.Service.Icon.Sign\src\Lykk.Service.KeyGenerator\Lykk.Service.Icon.KeyGenerator.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Lykke.Icon.Sdk" Version="0.2.0" />
+    <PackageReference Include="Lykke.Icon.Sdk" Version="0.2.7" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,9 +1,8 @@
-﻿using Lykke.Service.Icon.Sign.Core.Settings.ServiceSettings;
+﻿using Lykke.Sdk.Settings;
 
 namespace Lykke.Service.Icon.Sign.Core.Settings
 {
-    public class AppSettings
+    public class AppSettings : BaseAppSettings
     {
-        public IconSignSettings IconSignService { get; set; }
     }
 }

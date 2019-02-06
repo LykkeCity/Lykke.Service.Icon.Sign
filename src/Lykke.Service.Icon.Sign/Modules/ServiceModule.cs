@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using Lykke.Service.Icon.Sign.Core.Services;
-using Lykke.Service.Icon.Sign.Core.Settings.ServiceSettings;
 using Lykke.Service.Icon.Sign.Services;
-using Lykke.SettingsReader;
 
 namespace Lykke.Service.Icon.Sign.Modules
 {

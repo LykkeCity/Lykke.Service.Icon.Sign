@@ -1,14 +1,16 @@
 ﻿using System;
+using Lykke.Service.Icon.Sign.Services;
 
-namespace Lykk.Service.Stellar.KeyGenerator
+namespace Lykk.Service.Icon.KeyGenerator
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //var stellarPrivateKeyPair = StellarBase.KeyPair.Random();
-            //Console.WriteLine($"Seed(PrivateKey): {stellarPrivateKeyPair.Seed}");
-            //Console.WriteLine($"Address(PublicAddress): {stellarPrivateKeyPair.Address}");
+            var iconService = new IconSignService();
+            var keyPair = iconService.GenerateKeyPair();
+            Console.WriteLine($"PrivateKey: {keyPair.PrivateKey}");
+            Console.WriteLine($"Address(PublicAddress): {keyPair.Address}");
             Console.ReadLine();
         }
     }

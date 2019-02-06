@@ -1,110 +1,41 @@
-﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using JetBrains.Annotations;
-using Lykke.Common.ApiLibrary.Middleware;
-using Lykke.Common.ApiLibrary.Swagger;
-using Lykke.Logs;
-using Lykke.Service.Icon.Sign.Core.Services;
-using Lykke.Service.Icon.Sign.Core.Settings;
-using Lykke.Service.Icon.Sign.Modules;
-using Lykke.SettingsReader;
+﻿using JetBrains.Annotations;
+using Lykke.Sdk;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Threading.Tasks;
+using Lykke.Service.Icon.Sign.Core.Settings;
 
 namespace Lykke.Service.Icon.Sign
 {
     public class Startup
     {
-        public IHostingEnvironment Environment { get; }
-        public IContainer ApplicationContainer { get; private set; }
-        public IConfigurationRoot Configuration { get; }
+        private readonly LykkeSwaggerOptions _swaggerOptions = new LykkeSwaggerOptions
+        {
+            ApiTitle = "Lykke.Icon.Sign API",
+            ApiVersion = "v1"
+        };
 
         [UsedImplicitly]
-        public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-
-            Environment = env;
-        }
-
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc()
-                .AddJsonOptions(options =>
+            return services.BuildServiceProvider<AppSettings>(options =>
+            {
+                options.Logs = loggingOptions =>
                 {
-                    options.SerializerSettings.ContractResolver =
-                        new Newtonsoft.Json.Serialization.DefaultContractResolver();
-                });
+                    loggingOptions.UseEmptyLogging();
+                };
 
-            services.AddSwaggerGen(options =>
-            {
-                options.DefaultLykkeConfiguration("v1", "IconSign API");
+                options.SwaggerOptions = _swaggerOptions;
             });
-
-            services.AddEmptyLykkeLogging();
-
-            var builder = new ContainerBuilder();
-
-            builder.RegisterModule(new ServiceModule());
-            builder.Populate(services);
-            ApplicationContainer = builder.Build();
-
-            return new AutofacServiceProvider(ApplicationContainer);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime)
+        [UsedImplicitly]
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            app.UseLykkeConfiguration(options =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseLykkeForwardedHeaders();
-            app.UseLykkeMiddleware(ex => new { Message = "Technical problem" });
-
-            app.UseMvc();
-            app.UseSwagger(c =>
-            {
-                c.PreSerializeFilters.Add((swagger, httpReq) => swagger.Host = httpReq.Host.Value);
+                options.SwaggerOptions = _swaggerOptions;
             });
-            app.UseSwaggerUI(x =>
-            {
-                x.RoutePrefix = "swagger/ui";
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            });
-            app.UseStaticFiles();
-
-            appLifetime.ApplicationStarted.Register(() => StartApplication().GetAwaiter().GetResult());
-            appLifetime.ApplicationStopping.Register(() => StopApplication().GetAwaiter().GetResult());
-            appLifetime.ApplicationStopped.Register(CleanUp);
-        }
-
-        private async Task StartApplication()
-        {
-            // NOTE: Service not yet recieve and process requests here
-
-            await ApplicationContainer.Resolve<IStartupManager>().StartAsync();
-        }
-
-        private async Task StopApplication()
-        {
-            // NOTE: Service still can recieve and process requests here, so take care about it if you add logic here.
-
-            await ApplicationContainer.Resolve<IShutdownManager>().StopAsync();
-        }
-
-        private void CleanUp()
-        {
-            // NOTE: Service can't recieve and process requests here, so you can destroy all resources
-
-            ApplicationContainer.Dispose();
         }
     }
 }
